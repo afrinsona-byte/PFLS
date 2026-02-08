@@ -17,5 +17,5 @@ if [ "$START" == '>' ] ; then
  echo "Length of the shortest sequence: $len_of_short_seq"
  echo "GC Content (%): $GC_content"
 else
- echo "Not a FASTA file"
+ echo "This is not a FASTA file"
 fi
