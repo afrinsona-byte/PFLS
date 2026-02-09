@@ -7,11 +7,12 @@ len_of_long_seq=$((grep ">" $FASTA) | awk 'BEGIN{FS=";"} {print $6}' | awk 'BEGI
 len_of_short_seq=$((grep ">" $FASTA) | awk 'BEGIN{FS=";"} {print $6}' | awk 'BEGIN{FS=":"} {print $2}' | sort -n | head -n1)
 GC=$(grep -v '>' $FASTA | awk '{gc_count += gsub(/[GgCc]/, "", $1)} END {print gc_count}')
 GC_content=$(($GC*100/$total_len_seq))
- echo "FASTA File Statistics"
- echo "---------------------"
- echo "Number of sequences: $num_seq"
- echo "Total length of the sequences: $total_len_seq"
- echo "Average sequence length: $avg_seq_len"
- echo "Length of the longest sequence: 0"
- echo "Length of the shortest sequence: 0"
- echo "GC Content (%): $GC_content"
+
+echo "FASTA File Statistics:"
+echo "----------------------"
+echo "Number of sequences: $num_seq"
+echo "Total length of sequences: $total_len_seq"
+echo "Length of the longest sequence: 0"
+echo "Length of the shortest sequence: 0"
+echo "Average sequence length: $avg_seq_len"
+echo "GC Content (%): $GC_content"
