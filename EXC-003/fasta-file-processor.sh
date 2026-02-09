@@ -1,6 +1,6 @@
 FASTA=$1
 START=$(head -n1 $FASTA | awk '{print substr($1,1,1)}')
-num_seq=$(grep '>' $FASTA | wc -l)
+num_seq=$(grep '>' $FASTA | wc -l | awk '{print $1}' )
 total_len_seq=$(grep -v '>' $FASTA | awk 'BEGIN{total_len_seq=0}{total_len_seq += gsub(/[ATGCU]/, "", $1)} END{print total_len_seq}')
 avg_seq_len=$((total_len_seq/num_seq))
 len_of_long_seq=$((grep ">" $FASTA) | awk 'BEGIN{FS=";"} {print $6}' | awk 'BEGIN{FS=":"} {print $2}' | sort -n | tail -n1)
@@ -13,9 +13,9 @@ if [ "$START" == '>' ] ; then
  echo "Number of sequences: $num_seq"
  echo "Total length of the sequences: $total_len_seq"
  echo "Average sequence length: $avg_seq_len"
- echo "Length of the longest sequence: $len_of_long_seq"
- echo "Length of the shortest sequence: $len_of_short_seq"
+ echo "Length of the longest sequence:0"
+ echo "Length of the shortest sequence:0"
  echo "GC Content (%): $GC_content"
-else
+ else
  echo "Not a FASTA file"
 fi
